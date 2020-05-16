@@ -1,13 +1,16 @@
 const createArr = require("./createArray")
 const measure = require('./timeMeasure')
+const _ = require('lodash')
 
 const arr = createArr()
 
 const forLoop = () => {
 
-    for (let i = 0; i < arr.length; i++){
+    let newArray = []
 
-        let dummy = arr[i]
+    for (let i = 0; i < arr.length; i++) {
+
+        newArray.push(arr[i])
 
     }
 
@@ -15,18 +18,23 @@ const forLoop = () => {
 
 const forOfLoop = () => {
 
+    let newArray = []
+
     for (let val of arr){
-        let dummy = val
+        newArray.push(val)
     }
 
 }
 
 const forLoopCacheLength = () => {
 
-    const l = arr.length
-    for (let i = 0; i < l; i++){
+    let newArray = []
 
-        let dummy = arr[i]
+    const l = arr.length
+
+    for (let i = 0; i < l; i++) {
+
+        newArray.push(arr[i])
 
     }
 
@@ -34,19 +42,23 @@ const forLoopCacheLength = () => {
 
 const mapLoop = () => {
 
-    arr.map(i => {
-        let dummy = i
-    })
+    let newArray = arr.map(i => i)
 
 }
 
 const declearFuncMap = () => {
 
-    const func = i => {
-        let dummy = i
-    }
+    const func = i => i
 
-    arr.map(func)
+    let newArray = arr.map(func)
+
+}
+
+const lodashMap = () => {
+
+    const func = i => i
+
+    let newArray =  _.map(arr, func);
 
 }
 
@@ -55,3 +67,4 @@ measure("for cache length loop", forLoopCacheLength)
 measure("for of loop", forOfLoop)
 measure("map loop", mapLoop)
 measure("func map loop", declearFuncMap)
+measure("lodash map loop", lodashMap)
